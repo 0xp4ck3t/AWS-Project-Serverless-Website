@@ -1,19 +1,23 @@
+
 # How to Create a Static Website on AWS Using S3, CloudFront, Route 53, and Certificate Manager
 
 This repository contains all the resources and steps needed to create a static website on AWS using S3, CloudFront, Route 53, and AWS Certificate Manager.
 
 ## Table of Contents
 
+- [Flowchart](#Flowchart)
 - [Introduction](#introduction)
 - [Prerequisites](#prerequisites)
 - [Step-by-Step Guide](#step-by-step-guide)
   - [1. Setting Up an S3 Bucket](#1-setting-up-an-s3-bucket)
   - [2. Configuring CloudFront](#2-configuring-cloudfront)
-  - [3. Using AWS Certificate Manager](#3-using-aws-certificate-manager)
-  - [4. Setting Up Route 53](#4-setting-up-route-53)
-  - [5. Redirecting Traffic](#5-redirecting-traffic)
+  - [3. Setting Up Route 53](#4-setting-up-route-53)
+  - [4. Redirecting Traffic](#5-redirecting-traffic)
 - [Conclusion](#conclusion)
-- [Resources](#resources)
+- [Youtube Tutorial](#Youtube-Tutorial)
+
+## Flowchart
+![flowchart](https://raw.githubusercontent.com/0xp4ck3t/AWS-Project-Static-Website/main/Static%20Website.png)
 
 ## Introduction
 
@@ -38,20 +42,26 @@ In this tutorial, we will walk you through the complete process of setting up a 
 1. Open the CloudFront console.
 2. Create a new CloudFront distribution.
 3. Configure the origin settings to point to your S3 bucket.
-4. Set up cache behaviors and distribution settings as required.
+4. Enable origin access control settings and create OAC
+5. Change the viewer protocol policy to Redirect HTTP to HTTPS
+6. Select Do not enable security protections on the Web Application Firewall(WAF)
+7. Add the custom domain name to the Alternate domain name(CNAME)
+8. Click on **Request a Certificate** to obtain an SSL certificate using **AWS Certificate Manager**.
+   - Request a public certificate
+   - Add the FQDN
+   - Validate the domain ownership as instructed.
+   - Create the record in Route 53
+9. Set the Default root object to **index.html**
+10. Create Distribution
+11. Update the S3 bucket with the provided policy 
 
-### 3. Using AWS Certificate Manager
-
-1. Open the AWS Certificate Manager (ACM) console.
-2. Request a new certificate for your custom domain.
-3. Validate the domain ownership as instructed.
-4. Attach the certificate to your CloudFront distribution.
 
 ### 4. Setting Up Route 53
 
 1. Open the Route 53 console.
 2. Create a new hosted zone for your domain if not already done.
-3. Create an Alias record pointing to your CloudFront distribution.
+3. Create a simple routing policy with an Alias record that points to your CloudFront distribution.
+
 
 ### 5. Redirecting Traffic
 
@@ -63,9 +73,6 @@ In this tutorial, we will walk you through the complete process of setting up a 
 
 By following this guide, you should have a fully functional static website hosted on AWS, secured with HTTPS, and served globally via CloudFront.
 
-## Resources
+## Youtube Tutorial
 
-- [AWS S3 Documentation](https://docs.aws.amazon.com/s3/index.html)
-- [AWS CloudFront Documentation](https://docs.aws.amazon.com/cloudfront/index.html)
-- [AWS Certificate Manager Documentation](https://docs.aws.amazon.com/acm/index.html)
-- [AWS Route 53 Documentation](https://docs.aws.amazon.com/route53/index.html)
+For a detailed walkthrough, follow this tutorial on YouTube: [Watch the Tutorial](https://youtu.be/6KLPcnsG0OE?si=h8OPj0itp3y3ezrB)
