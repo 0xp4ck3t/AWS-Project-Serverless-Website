@@ -5,7 +5,7 @@ This repository contains all the resources and steps needed to create a static w
 
 ## Table of Contents
 
-- [Flowchart](#Flowchart)
+- [Architecture](#Architecture)
 - [Introduction](#introduction)
 - [Prerequisites](#prerequisites)
 - [Step-by-Step Guide](#step-by-step-guide)
@@ -16,8 +16,8 @@ This repository contains all the resources and steps needed to create a static w
 - [Conclusion](#conclusion)
 - [Youtube Tutorial](#Youtube-Tutorial)
 
-## Flowchart
-![flowchart](https://raw.githubusercontent.com/0xp4ck3t/AWS-Project-Static-Website/main/Static%20Website.png)
+## Architecture
+![Architecture](https://github.com/0xp4ck3t/AWS-Project-Static-Website/blob/main/static_architecture.png)
 
 ## Introduction
 
