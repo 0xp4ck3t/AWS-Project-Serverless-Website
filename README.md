@@ -76,3 +76,68 @@ By following this guide, you should have a fully functional static website hoste
 ## Youtube Tutorial
 
 For a detailed walkthrough, follow this tutorial on YouTube: [Watch the Tutorial](https://youtu.be/6KLPcnsG0OE?si=h8OPj0itp3y3ezrB)
+
+
+# Part 2 - Implement Visitor Count Tracking with AWS API Gateway, Lambda, and DynamoDB
+
+In this section, we will implement a visitor count tracking system using AWS API Gateway, Lambda, and DynamoDB.
+
+## Architecture
+![Architecture](https://github.com/0xp4ck3t/AWS-Project-Static-Website/blob/main/serverless_architecture.png)
+
+## Introduction
+
+In this section, we will implement a visitor count tracking system using AWS API Gateway, Lambda, and DynamoDB.
+
+## Step 1: Set Up DynamoDB Table
+
+1. Open the AWS Management Console.
+2. Navigate to DynamoDB.
+3. Create a new table named `visitorcounts`.
+4. Set the primary key as `id` with type `String`.
+5. Add an initial item with `id` set to `0` and `views` set to `0`.
+
+## Step 2: Create a Lambda Function
+
+1. Open the AWS Management Console.
+2. Navigate to Lambda.
+3. Create a new Lambda function named `VisitorCountFunction`.
+4. Set the runtime to Python 3.x.
+5. Use the code from `lambda.py` for the Lambda function.
+6. Configure the Lambda function with an execution role that has access to DynamoDB.
+
+## Step 3: Set Up API Gateway
+
+1. Open the AWS Management Console.
+2. Navigate to API Gateway.
+3. Create a new API.
+4. Create a new resource named `visitors`.
+5. Create a new GET method for the `visitors` resource.
+6. Integrate the GET method with the Lambda function `VisitorCountFunction`.
+7. Enable CORS for the GET method.
+8. Add a mapping template for the GET method to pass query string parameters to the Lambda function:
+
+    ```json
+    {
+        "queryStringParameters": {
+            "count": "$input.params('count')"
+        }
+    }
+    ```
+
+9. Deploy the API to a stage (e.g., `prod`).
+
+## Step 4: Implement Client-Side Code
+
+1. Add the code from `visitorcount.js` to your website to track unique visitors.
+2. Ensure you have an HTML element with `id="visitors"` where the count will be displayed:
+
+    ```html
+    <div id="visitors"></div>
+    ```
+
+## Step 5: Test the Implementation
+
+1. Open your website in a browser.
+2. Verify that the visitor count is displayed and increments for unique visitors.
+3. Check that the count does not increment for returning visitors.
